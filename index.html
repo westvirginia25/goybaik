@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shareloc dongg</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffeef7 0%, #ffd6e8 50%, #ffc0e0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sparkle {
+            font-size: 2rem;
+            margin: 10px;
+            animation: sparkle 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff69b4;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .button-container {
+            margin-top: 50px;
+        }
+
+        .cute-button {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cute-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cute-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cute-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 105, 180, 0.6);
+        }
+
+        .cute-button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .cute-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 105, 180, 0.6);
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .decoration {
+            margin: 20px 0;
+            font-size: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .cute-button {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="decoration">
+            <span class="sparkle">✨</span>
+            <span class="sparkle">🐱</span>
+            <span class="sparkle">✨</span>
+        </div>
+        
+        <h1>salsa shareloc nya dongg</h1>
+        
+        <div class="decoration">
+            <span class="sparkle">🌸</span>
+            <span class="sparkle">🐰</span>
+            <span class="sparkle">🌸</span>
+        </div>
+        
+        <div class="button-container">
+            <button class="cute-button" onclick="handleClick()">
+                <span>nih disini nih klik</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating animals
+        const animals = ['🐱', '🐶', '🐰', '🐼', '🦄', '🐨', '🐯', '🦊'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = animals[Math.floor(Math.random() * animals.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 15000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 500);
+
+        // Button click handler
+        function handleClick() {
+            // You can customize what happens when the button is clicked
+            // For example, open WhatsApp, send a message, etc.
+            alert('tapi boonk');
+            
+            // Optional: Open WhatsApp or share location
+            window.open('https://wa.me/62817449496?text=Halo tapi boonk lagi', '_blank');
+        }
+    </script>
+</body>
+</html>
+
